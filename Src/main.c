@@ -19,11 +19,19 @@
 #include "main.h"
 
 // ADC 1/3 -> PA3
+uint16_t result = 0;
 
 int main(void)
 {
-    /* Loop forever */
-	while(1){
 
+	ADC_CONF();
+	ADC_START();
+
+	while(1){
+		//WAIT UNTIL CONVERSION ENDS
+		while(CONV_IN_PROG){
+			//WAIT
+		}
+		result = ADC1->DR;
 	}
 }
