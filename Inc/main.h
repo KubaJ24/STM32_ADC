@@ -18,6 +18,7 @@
 
 void ADC_CONF(void);
 void Delay(void);
+void ADC_INT_CONF(void);
 
 void ADC_CONF(void){
 	//GPIOA CLOCK ENABLE
@@ -38,6 +39,8 @@ void ADC_CONF(void){
 	ADC1->CR1 |= (0 << 24);
 	//EOC ENABLED (END OF CONVERSION)
 	ADC1->CR2 |= ADC_CR2_EOCS;
+	//EOCIE ENABLED - EOC INTERRUPT
+	ADC1->CR1 |= ADC_CR1_EOCIE;
 	//RIGHT DATA ALIGNMENT
 	ADC1->CR2 &= ~(ADC_CR2_ALIGN);
 	//SEQUENCE OF ONE CHANNEL
@@ -51,6 +54,12 @@ void ADC_CONF(void){
 void Delay(void){
 	uint32_t time;
 	for(time = 0; time < 99999; time++){}
+
+void ADC_INT_CONF(void){
+	//SET PRIORITY
+	NVIC_SetPriority (ADC_IRQn, 0);
+	//ENABLE INT
+	NVIC_EnableIRQ (ADC_IRQn);
 }
 
 #endif /* MAIN_H_ */
