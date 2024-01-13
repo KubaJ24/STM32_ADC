@@ -30,6 +30,7 @@ int main(void)
 	printf("Semihosting rozpoczety\n");
 	ADC_CONF();
 	ADC_INT_CONF();
+	ADC_START;
 
 	while(1){
 
