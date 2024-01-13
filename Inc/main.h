@@ -12,10 +12,15 @@
 #include "stm32f746xx.h"
 
 #define CONV_IN_PROG	!(ADC_SR_EOC)
-#define ADC_START		ADC1->CR2 |= ADC_CR2_SWSTART;
-#define ADC_ON			ADC1->CR2 |= ADC_CR2_ADON;
+#define ADC_START		ADC1->CR2 |= ADC_CR2_SWSTART
+#define ADC_ON			ADC1->CR2 |= ADC_CR2_ADON
+#define DMA_ENABLE		DMA2_Stream0->CR |= (1 << 0)
+#define DMA_PER_ADD 	DMA2_Stream0->PAR = (uint32_t) &ADC1->DR
+#define DMA_ITEM_NUM	DMA2_Stream0->NDTR = 10		//10 ITEMS TO TRANSFER
+//#define DMA_MEM_ADD		DMA2_Stream0->M0AR = 		//DATA ADDRESS
 
 void ADC_CONF(void);
+void DMA_CONF(void);
 void ADC_DMA_ENABLE(void);
 
 void ADC_CONF(void){
@@ -44,6 +49,25 @@ void ADC_CONF(void){
 	ADC1->CR2 |= ADC_CR2_CONT;
 	//28 CYCLES SAMPLE TIME
 	ADC1->SMPR2 |= ADC_SMPR2_SMP4_1;
+}
+
+void DMA_CONF(void){
+	//ADC1 -> DMA2 STREAM 0 CHANNEL 0
+
+	//DMA2 CLOCK ENABLE
+	RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN;
+
+	//DMA STREAM DISABLED
+	DMA2_Stream0->CR &= ~(1 << 0);
+
+	//MEMORY SIZE 16 BIT
+	DMA2_Stream0->CR |= (1 << 13);
+	//PEIPHERAL DATA SIZE
+	DMA2_Stream0->CR |= (1 << 11);
+	//MEMORY INCREMENT
+	DMA2_Stream0->CR |= (1 << 10);
+	//CIRCULAR MODE
+	DMA2_Stream0->CR |= (1 << 8);
 }
 
 void ADC_DMA_ENABLE(void){
