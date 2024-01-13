@@ -1,0 +1,4 @@
+../Inc/main.h:26:6:ADC_CONF	1
+../Inc/main.h:54:6:DMA_CONF	1
+../Inc/main.h:73:6:ADC_DMA_ENABLE	1
+../Src/main.c:24:5:main	1
