@@ -13,6 +13,7 @@
 
 #define CONV_IN_PROG	!(ADC_SR_EOC)
 #define ADC_START		ADC1->CR2 |= ADC_CR2_SWSTART;
+#define ADC_ON			ADC1->CR2 |= ADC_CR2_ADON;
 
 void ADC_CONF(void);
 void ADC_DMA_ENABLE(void);
@@ -43,9 +44,6 @@ void ADC_CONF(void){
 	ADC1->CR2 |= ADC_CR2_CONT;
 	//28 CYCLES SAMPLE TIME
 	ADC1->SMPR2 |= ADC_SMPR2_SMP4_1;
-
-	//ADC ON
-	ADC1->CR2 |= ADC_CR2_ADON;
 }
 
 void ADC_DMA_ENABLE(void){
