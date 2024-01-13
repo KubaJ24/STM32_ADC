@@ -24,9 +24,9 @@ uint16_t result = 0;
 int main(void)
 {
 
-	initialise_monitor_handles();
+	//initialise_monitor_handles();
 	ADC_CONF();
-	ADC_START();
+	ADC_START;
 
 	while(1){
 		//WAIT UNTIL CONVERSION ENDS

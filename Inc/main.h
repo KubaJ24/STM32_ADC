@@ -12,9 +12,9 @@
 #include "stm32f746xx.h"
 
 #define CONV_IN_PROG	!(ADC_SR_EOC)
+#define ADC_START		ADC1->CR2 |= ADC_CR2_SWSTART;
 
 void ADC_CONF(void);
-void ADC_START(void);
 
 void ADC_CONF(void){
 	//GPIOA CLOCK ENABLE
@@ -45,10 +45,6 @@ void ADC_CONF(void){
 
 	//ADC ON
 	ADC1->CR2 |= ADC_CR2_ADON;
-}
-
-void ADC_START(void){
-	ADC1->CR2 |= ADC_CR2_SWSTART;
 }
 
 #endif /* MAIN_H_ */
