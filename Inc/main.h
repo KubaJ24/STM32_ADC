@@ -15,6 +15,7 @@
 #define ADC_START		ADC1->CR2 |= ADC_CR2_SWSTART;
 
 void ADC_CONF(void);
+void ADC_DMA_ENABLE(void);
 
 void ADC_CONF(void){
 	//GPIOA CLOCK ENABLE
@@ -45,6 +46,13 @@ void ADC_CONF(void){
 
 	//ADC ON
 	ADC1->CR2 |= ADC_CR2_ADON;
+}
+
+void ADC_DMA_ENABLE(void){
+	//DMA ENABLE
+	ADC1->CR2 |= ADC_CR2_DMA;
+	//DMA CONTINUOUS REQUEST - DDS
+	ADC1->CR2 |= ADC_CR2_DDS;
 }
 
 #endif /* MAIN_H_ */
