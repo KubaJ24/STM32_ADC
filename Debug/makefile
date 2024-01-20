@@ -60,7 +60,7 @@ main-build: STM32_ADC.elf secondary-outputs
 
 # Tool invocations
 STM32_ADC.elf STM32_ADC.map: $(OBJS) $(USER_OBJS) C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\STM32_ADC\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32_ADC.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\STM32_ADC\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_ADC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "STM32_ADC.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\STM32_ADC\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_ADC.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

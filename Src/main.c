@@ -24,7 +24,7 @@ uint16_t result = 0;
 int main(void)
 {
 
-	//initialise_monitor_handles();
+	initialise_monitor_handles();
 	ADC_CONF();
 	ADC_START;
 
