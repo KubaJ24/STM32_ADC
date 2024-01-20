@@ -15,6 +15,7 @@
 #define ADC_START		ADC1->CR2 |= ADC_CR2_SWSTART;
 
 void ADC_CONF(void);
+void Delay(void);
 
 void ADC_CONF(void){
 	//GPIOA CLOCK ENABLE
@@ -45,6 +46,11 @@ void ADC_CONF(void){
 
 	//ADC ON
 	ADC1->CR2 |= ADC_CR2_ADON;
+}
+
+void Delay(void){
+	uint32_t time;
+	for(time = 0; time < 99999; time++){}
 }
 
 #endif /* MAIN_H_ */

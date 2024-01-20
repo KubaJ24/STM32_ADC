@@ -34,5 +34,6 @@ int main(void)
 			//WAIT
 		}
 		result = ADC1->DR;
+		printf("%d", result);
 	}
 }
