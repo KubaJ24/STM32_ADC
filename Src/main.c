@@ -21,27 +21,24 @@
 // ADC 1/3 -> PA3
 // ADC 1 CHANNEL 3
 
-void ADC_IRQHandler(void);
+void ADC_IRQHandler(void){
+	uint16_t result = ADC1->DR;
+	printf("%d\n", result);
+	ADC_SR_CLEAR;
+	ADC_START;
+}
 
 int main(void)
 {
 
-	//initialise_monitor_handles();
+	initialise_monitor_handles();
 	printf("Semihosting rozpoczety\n");
+
 	ADC_CONF();
 	ADC_INT_CONF();
 	ADC_START;
 
 	while(1){
 
-	}
-}
-
-void ADC_IRQHandler(void){
-	result = ADC1->DR;
-	if(result == 0){
-		//DISPLAY ERROR MESSAGE
-	} else {
-		//DISPLAY RESULT OF CONVERSION
 	}
 }

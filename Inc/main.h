@@ -54,6 +54,8 @@ void ADC_CONF(void){
 void Delay(void){
 	uint32_t time;
 	for(time = 0; time < 99999; time++){}
+}
+
 void ADC_INT_CONF(void){
 	//SET PRIORITY
 	NVIC_SetPriority (ADC_IRQn, 0);
